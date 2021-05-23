@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.mirea.saburov.mireaproject.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.mirea.saburov.mireaproject.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.mirea.saburov.mireaproject.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_calculator"
+        android:name="com.mirea.saburov.mireaproject.ui.calculator.CalculatorFragment"
+        android:label="@string/menu_calculator"
+        tools:layout="@layout/calculcator_fragment" />
+
+    <fragment
+        android:id="@+id/nav_browser"
+        android:name="com.mirea.saburov.mireaproject.ui.browser.BrowserFragment"
+        android:label="@string/menu_browser"
+        tools:layout="@layout/fragment_browser" />
+</navigation>
