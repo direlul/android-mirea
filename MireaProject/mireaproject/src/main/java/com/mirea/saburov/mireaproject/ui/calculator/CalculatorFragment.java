@@ -1,8 +1,5 @@
 package com.mirea.saburov.mireaproject.ui.calculator;
 
-import androidx.lifecycle.ViewModelProvider;
-
-import android.icu.text.NumberFormat;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.mirea.saburov.mireaproject.R;
 
 public class CalculatorFragment extends Fragment implements View.OnClickListener {
@@ -33,7 +29,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.calculcator_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_calculcator, container, false);
 
         Button buttonPlus = view.findViewById(R.id.plus);
         Button buttonMinus = view.findViewById(R.id.minus);

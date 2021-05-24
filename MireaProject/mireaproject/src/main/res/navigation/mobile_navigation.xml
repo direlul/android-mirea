@@ -13,16 +13,10 @@
 
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.mirea.saburov.mireaproject.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
         android:id="@+id/nav_calculator"
         android:name="com.mirea.saburov.mireaproject.ui.calculator.CalculatorFragment"
         android:label="@string/menu_calculator"
-        tools:layout="@layout/calculcator_fragment" />
+        tools:layout="@layout/fragment_calculcator" />
 
     <fragment
         android:id="@+id/nav_browser"
@@ -53,4 +47,16 @@
         android:name="com.mirea.saburov.mireaproject.ui.music.DictaphoneFragment"
         android:label="@string/menu_dictaphone"
         tools:layout="@layout/fragment_dictaphone" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.mirea.saburov.mireaproject.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_stories"
+        android:name="com.mirea.saburov.mireaproject.ui.story.StoryFragment"
+        android:label="@string/menu_stories"
+        tools:layout="@layout/fragment_story" />
 </navigation>

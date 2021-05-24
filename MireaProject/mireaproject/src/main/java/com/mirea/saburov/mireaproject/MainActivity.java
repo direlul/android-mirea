@@ -1,33 +1,41 @@
 package com.mirea.saburov.mireaproject;
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
+import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.mirea.saburov.mireaproject.databinding.ActivityMainBinding;
-import com.mirea.saburov.mireaproject.service.MusicService;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_PERMISSION = 100;
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    private static final int REQUEST_CODE_PERMISSION = 100;
+    private SharedPreferences preferences;
+
+    private static Toolbar toolBar;
 
     private final String[] PERMISSIONS = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -63,13 +71,27 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_slideshow, R.id.nav_calculator, R.id.nav_browser,
-                R.id.nav_sensor, R.id.nav_camera, R.id.nav_dictaphone)
+                R.id.nav_home, R.id.nav_calculator, R.id.nav_browser,
+                R.id.nav_sensor, R.id.nav_camera, R.id.nav_dictaphone, R.id.nav_settings, R.id.nav_stories)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        toolBar = findViewById(R.id.toolbar);
+        preferences = getPreferences(Context.MODE_PRIVATE);
+
+        String colorBar = preferences.getString("color_bar", "Blue");
+        String sound = preferences.getString("sound", "enabled");
+
+        if ("enabled".equals(sound)) {
+            enableSound(this);
+        } else if ("disabled".equals(sound)){
+            disableSound(this);
+        }
+
+        setColorBar(colorBar);
     }
 
     @Override
@@ -106,7 +128,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isWork() {
-        return isWork;
+    public static void setColorBar(String colorBar) {
+        switch (colorBar) {
+            case "Blue":
+                toolBar.setBackgroundColor(Color.BLUE);
+                break;
+            case "Red":
+                toolBar.setBackgroundColor(Color.RED);
+                break;
+            case "Green":
+                toolBar.setBackgroundColor(Color.GREEN);
+                break;
+        }
     }
+
+    public static void disableSound(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, 0);
+    }
+
+    public static void enableSound(Context context) {
+        AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, 10, 0);
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.mirea.saburov.mireaproject.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,27 +17,43 @@ import androidx.lifecycle.ViewModelProvider;
 import com.mirea.saburov.mireaproject.R;
 import com.mirea.saburov.mireaproject.databinding.FragmentHomeBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+
     private FragmentHomeBinding binding;
+    private SharedPreferences preferences;
+    private TextView hello;
+    private String name;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        return binding.getRoot();
+    }
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        hello = view.findViewById(R.id.text_home);
+        name = preferences.getString("guest_name", "Guest");
+        hello.setText("Hello, " + name);
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        hello.setText("Hello, " + name);
+        super.onStart();
+    }
+
+    @Override
+    public void onResume() {
+        hello.setText("Hello, " + name);
+        super.onResume();
     }
 
     @Override
