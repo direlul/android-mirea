@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">yandexmap</string>
+    <string name="unknown_error_message">Error</string>
+
+</resources>

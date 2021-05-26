@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_music" />
 
     <fragment
+        android:id="@+id/nav_map"
+        android:name="com.mirea.saburov.mireaproject.ui.map.MapsFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
         android:id="@+id/nav_sensor"
         android:name="com.mirea.saburov.mireaproject.ui.sensor.Sensor"
         android:label="@string/menu_sensor"

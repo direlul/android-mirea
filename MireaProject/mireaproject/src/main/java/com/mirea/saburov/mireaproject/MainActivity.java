@@ -59,13 +59,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -73,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_calculator, R.id.nav_browser,
                 R.id.nav_sensor, R.id.nav_camera, R.id.nav_dictaphone, R.id.nav_settings,
-                R.id.nav_stories, R.id.nav_ip)
+                R.id.nav_stories, R.id.nav_ip, R.id.nav_map)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
